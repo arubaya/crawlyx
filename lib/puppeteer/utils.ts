@@ -11,7 +11,7 @@ export const getBrowser = async () => {
     executablePath:
       process.env.NODE_ENV === "development"
         ? undefined
-        : await chromium.executablePath("chromium-pack"),
+        : await chromium.executablePath("../chromium-pack"), // use for vercel
     headless: process.env.NODE_ENV === "development" ? false : true,
   });
   return browser;
