@@ -1,19 +1,20 @@
 import puppeteer from "puppeteer";
 import chromium from "@sparticuz/chromium-min";
-import { join } from "path";
+// import { join } from "path";
 
 export const getBrowser = async () => {
-  const dirRelativeChromiumFolder = "chromium-pack";
+  // const dirRelativeChromiumFolder = "chromium-pack";
 
   const browser = await puppeteer.launch({
     args: process.env.NODE_ENV === "development" ? undefined : chromium.args,
     defaultViewport: chromium.defaultViewport,
-    executablePath:
-      process.env.NODE_ENV === "development"
-        ? undefined
-        : await chromium.executablePath(
-            join(process.cwd(), dirRelativeChromiumFolder)
-          ),
+    // executablePath: "/tmp/puppeteer",
+    // executablePath:
+    //   process.env.NODE_ENV === "development"
+    //     ? undefined
+    //     : await chromium.executablePath(
+    //         join(process.cwd(), dirRelativeChromiumFolder)
+    //       ),
     headless: process.env.NODE_ENV === "development" ? false : true,
   });
   return browser;
