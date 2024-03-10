@@ -12,7 +12,7 @@ export const getBrowser = async () => {
       process.env.NODE_ENV === "development"
         ? undefined
         : await chromium.executablePath(
-            join(__dirname, dirRelativeChromiumFolder)
+            join(process.cwd(), dirRelativeChromiumFolder)
           ),
     headless: process.env.NODE_ENV === "development" ? false : true,
   });
