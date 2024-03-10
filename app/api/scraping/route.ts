@@ -7,7 +7,6 @@ export async function POST(request: Request) {
 
     const browser = await getBrowser();
     const page = await browser.newPage();
-    await page.setViewport({ width: 1024, height: 738 });
 
     await page.goto(data.url);
 

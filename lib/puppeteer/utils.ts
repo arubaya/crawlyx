@@ -1,22 +1,19 @@
 import puppeteer from "puppeteer";
 import chromium from "@sparticuz/chromium-min";
-import path from "path";
+import { join } from "path";
 
 export const getBrowser = async () => {
   const dirRelativeChromiumFolder = "chromium-pack";
 
-  const dir = path.resolve(dirRelativeChromiumFolder);
-
   const browser = await puppeteer.launch({
     args: process.env.NODE_ENV === "development" ? undefined : chromium.args,
-    defaultViewport:
-      process.env.NODE_ENV === "development"
-        ? undefined
-        : chromium.defaultViewport,
+    defaultViewport: chromium.defaultViewport,
     executablePath:
       process.env.NODE_ENV === "development"
         ? undefined
-        : await chromium.executablePath(dir), // use for vercel
+        : await chromium.executablePath(
+            join(__dirname, dirRelativeChromiumFolder)
+          ),
     headless: process.env.NODE_ENV === "development" ? false : true,
   });
   return browser;
